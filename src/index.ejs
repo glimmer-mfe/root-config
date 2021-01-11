@@ -47,8 +47,9 @@
   <script type="systemjs-importmap">
     {
       "imports": {
-        "@dcx/root-config": "//localhost:9000/dcx-root-config.js",
-        "@dcx/navbar": "//localhost:8080/navbar.js"
+        "@glimmer-mf/root-config": "//localhost:9000/glimmer-mf-root-config.js",
+        "@glimmer-mf/navbar": "//localhost:8080/navbar.js",
+        "@glimmer-mf/people": "//localhost:8081/people.js"
       }
     }
   </script>
@@ -72,22 +73,26 @@
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.4.0/dist/extras/named-exports.min.js"></script>
   <% } %>
 
-  <h1>Glimmer Micro Frontends</h1>
-  <template id="single-spa-layout">
     <single-spa-router>
-       <nav>
-        <application name="@dcx/navbar"></application>
-      </nav>
+        <application name="@glimmer-mf/navbar"></application>
+        <div id="navbar"></div>
       <main>
         <route default>
+        <h1>Home page</h1>
+        </route>
+        <route path="people">
+        <application name="@glimmer-mf/people"></application>
+        <div id="people"></div>
+        </route>
+        <route path="planets">
+        <div id="planets"></div>
         </route>
       </main>
     </single-spa-router>
-  </template>
 </head>
 <body>
   <script>
-    System.import('@dcx/root-config');
+    System.import('@glimmer-mf/root-config');
   </script>
   <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
 </body>
