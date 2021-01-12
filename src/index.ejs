@@ -34,7 +34,11 @@
   <script type="systemjs-importmap">
     {
       "imports": {
-        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.5.5/lib/system/single-spa.min.js"
+        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.5.5/lib/system/single-spa.min.js",
+        "@glimmer-mf/root-config": "https://glimmer-mf.surge.sh/glimmer-mf-root-config.js",
+        "@glimmer-mf/navbar": "https://glimmer-mf-navbar.surge.sh/navbar.js",
+        "@glimmer-mf/people": "https://glimmer-mf-people.surge.sh/people.js",
+        "@glimmer-mf/planets": "https://glimmer-mf-planets.surge.sh/planets.js"
       }
     }
   </script>
@@ -49,7 +53,8 @@
       "imports": {
         "@glimmer-mf/root-config": "//localhost:9000/glimmer-mf-root-config.js",
         "@glimmer-mf/navbar": "//localhost:8080/navbar.js",
-        "@glimmer-mf/people": "//localhost:8081/people.js"
+        "@glimmer-mf/people": "//localhost:8081/people.js",
+        "@glimmer-mf/planets": "//localhost:8082/planets.js"
       }
     }
   </script>
@@ -73,22 +78,28 @@
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.4.0/dist/extras/named-exports.min.js"></script>
   <% } %>
 
+  <template id="single-spa-layout">
     <single-spa-router>
         <application name="@glimmer-mf/navbar"></application>
         <div id="navbar"></div>
       <main>
         <route default>
-        <h1>Home page</h1>
+        <p class="mfe-info">
+        This example project shows independently built and deployed microfrontends that use <a href="https://glimmerjs.com">Glimmer.js</a> and <a href="https://single-spa.js.org">single-spa</a>. Each nav link above takes you to a different microfrontend.
+        </p>
         </route>
         <route path="people">
         <application name="@glimmer-mf/people"></application>
-        <div id="people"></div>
         </route>
         <route path="planets">
-        <div id="planets"></div>
+        <application name="@glimmer-mf/planets"></application>
         </route>
       </main>
+      <footer>
+        <p><a href="https://github.com/glimmer-mfe">Github</a></p>
+      </footer>
     </single-spa-router>
+  </template>
 </head>
 <body>
   <script>
